@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Cluster Algorithm Sorting</title>
+    </head>
+    <body>
+        <script src="https://d3js.org/d3.v3.min.js"></script>
+        <script src="https://d3js.org/d3-timer.v1.min.js"></script>
+        <div id="noCLuster" style="position: absolute; font-size: 20px; left: 100px; top: 250px; display: none">Can't work without clusters</div>
+        <div id="noPoints" style="position: absolute; font-size: 20px; left: 100px; top: 250px; display: none">Can't work without points</div>
+
+        <div>
+            <canvas id="switches2" width="90" height="20" style="position: absolute; left: 100px; border: 1px solid #000000;"></canvas>
+        </div>
+        <div>
+            <canvas id="switches" width="90" height="20" style="border: 1px solid #000000;"></canvas>
+        </div>
+
+        <div id="sorted" style="position: absolute; left: 235px; top: -20px; display: none;"><p style="font-size:160%;"><b>SORTED</b></p></div>
+        <div style="position: absolute; left: 360px; top: -20px;"><p style="font-size:160%;" id="iterations">0000</p></div>
+
+        <div>
+            <canvas id="myCanvas" width="400" height="400" style="position: absolute; top: 40px; border:1px solid #000000;"></canvas>
+        </div>
+
+        <button type="button" id="button" style="position: absolute; top: 445px; left: 128px; width: 35px; height: 25px;" disabled><img src="icons/previousg.png" alt="Previous button" height="20" width="20"/></button>
+        <button type="button" id="button2" style="position: absolute; top: 445px; left: 168px; width: 35px; height: 25px;" disabled><img src="icons/playg.png" alt="Play button" height="20" width="20"/></button>
+        <button type="button" id="button3" style="position: absolute; top: 445px; left: 208px; width: 35px; height: 25px;" disabled><img src="icons/nextg.png" alt="Next button" height="20" width="20"/></button>
+        <button type="button" id="button4" style="position: absolute; top: 445px; left: 330px; width: 80px; height: 25px; display: none;">CLEAR</button>
+
+        <button type="button" id="button8" style="position: absolute; top: 200px; left: 415px; width: 100px;">MEANSHIFT</button>
+
+        <select id="algorithm" onchange="algChange()" style="position: absolute; top: 10px; left: 420px; width: 100px;">
+            <option value="alg0">K-Means</option>
+            <option value="alg1">Mean Shift</option>
+        </select>
+
+        <select id="presets" onchange="presetChange()" style="position: absolute; top: 250px; left: 420px; width: 100px;">
+            <option value="preset0">No preset</option>
+            <option value="preset1">S symbol</option>
+            <option value="preset2">Two circles</option>
+            <option value="preset3">Waves</option>
+            <option value="preset4">Three points</option>
+            <option value="preset5">Square</option>
+        </select>
+
+        <!-- POINTS -->
+        <form id="pointForm">
+            <div style="position: absolute; top: 480px;">PLACE
+                <input type="number" id="pointClicks" size="2" value="2000" min="1" style="position: absolute; top: -3px; left: 58px; width: 45px" />
+            </div>
+            <div style="position: absolute; top: 480px; left: 120px;">POINTS</div>
+            <button type="button" id="button5" style="position: absolute; top: 478px; left: 250px">RANDOMLY</button>
+        </form>
+
+        <!-- CLUSTERS -->
+        <form id="clusterForm" style="position: absolute; top: 35px;">
+            <div style="position: absolute; top: 475px;">GENERATE
+                <input type="number" onchange="news('input')" id="clusterClicks" value="0" min="0" max="10" style="position: absolute; top: -3px; left: 90px; width: 30px;" />
+            </div>
+            <div style="position: absolute; top: 475px; left: 130px;">CLUSTERS</div>
+            <div style="position: absolute; top: 475px; left:240px;"><input type="checkbox" id="circle" onchange="circleSetup()" value="0">
+                <div style="position: relative; top: -19px; left:20px;">
+                    CIRCLED
+                </div>
+            </div>
+        </form>
+        <script src="point.js"></script>
+        <script src="cluster.js"></script>
+        <script src="application.js"></script>
+        <script src="kmeans.js"></script>
+        <script src="meanShift.js"></script>
+        <script src="presets.js"></script>
+    </body>
+</html>
